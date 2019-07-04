@@ -1,0 +1,78 @@
+{
+    "name": "Xplained Pro SAM C21",
+    "target": "xplained_c21",
+    "cc": "armgcc",
+    "classes": [
+        "xplained_c21.XplainedProSamC21"
+    ],
+    "ram": 32,
+    "flash": 256,
+    "family_type": "armcmx",
+    "family_name": "atmelsamc21",
+    "chip_model": "SAMC21",
+    "manual_reset": 0,
+    "preferred_baud": 115200,
+    "board_producer": "Atmel",
+    "chip_manifacturer": "Atmel",
+    "architecture": "cortex-m0plus",
+    "gccopts": {
+        "arch": [
+            "cortex-m0plus",
+            "-mthumb"
+        ],
+        "cflags": [
+            "-mcpu=cortex-m0plus",
+            "-mthumb",
+            "-O2",
+            "-fomit-frame-pointer",
+            "-falign-functions=16",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fno-common",
+            "-Wall",
+            "-Wextra",
+            "-Wstrict-prototypes",
+            "-nostdlib",
+            "-std=c99"
+        ],
+        "defs": [
+            "__ATSAMC21J18A__",
+            "SAMC21_VHAL",
+            "VM_DEFAULT_THREAD_SIZE=1024"
+        ]
+    },
+    "relocator": "cortex-m",
+    "type": "board",
+    "virtualizable": "XplainedProSamC21",
+    "jtag_target": "at91samdXX.cfg",
+    "jtag_capable": 2,
+    "jtag_class": "XplainedProSamC21",
+    "jtag_chipid_command": "reset halt; mdw 0x0080A00C; mdw 0x0080A040; mdw 0x0080A044; mdw 0x0080A048",
+    "jtag_chipid_len": 4,
+    "jtag_timeout": 30,
+    "jtag_chipid_prefix": "0x0080",
+    "bytecode_offset":"0x18600",
+    "vmstore_offset":"0x18200",
+    "uplink_reset": "reset",
+    "reset_time": 2000,
+    "vm_mini_chunk": 64,
+    "has_alter_ego": false,
+    "connection": {
+        "baudrate": 115200,
+        "parity": "n",
+        "bytesize": 8,
+        "stopbits": 1,
+        "dsrdtr": false,
+        "rtscts": false
+    },
+    "crypto_provisioning": "lightweight",
+    "preferred_uplink_with_jtag":{
+        "probe":"atmel_edbg"
+    },
+    "preferred_register_with_jtag":{
+        "probe":"atmel_edbg"
+    },
+    "preferred_burn_with_jtag":{
+        "probe":"atmel_edbg"
+    }
+}

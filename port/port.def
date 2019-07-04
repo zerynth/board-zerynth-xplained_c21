@@ -1,0 +1,184 @@
+/* Port definition */
+
+////LAYOUT: xplained_c21
+////PERIPHERALS: SERIAL0 SERIAL1 ADC0 PWMD0 ICUD0 SPI0 SPI1 I2C0
+////CDEFINES: ATMELSAMC21 SAMC21_VHAL
+
+const PinInfo const _vhalpinmap[] STORED = {
+    /* Arduino Connectors */
+    /* D0  */ MAKE_PIN(PA, 23, HAS_EXT | HAS_SER | HAS_ATM), /* RX SERCOM3 */
+    /* D1  */ MAKE_PIN(PA, 22, HAS_EXT | HAS_SER | HAS_ATM), /* TX SERCOM3 */
+    /* D2  */ MAKE_PIN(PA, 20, HAS_EXT | HAS_ATM),
+    /* D3  */ MAKE_PIN(PB, 12, HAS_EXT | HAS_ATM),
+    /* D4  */ MAKE_PIN(PA, 21, HAS_EXT | HAS_ATM),
+    /* D5  */ MAKE_PIN(PB, 13, HAS_EXT | HAS_ATM),
+    /* D6  */ MAKE_PIN(PB, 30, HAS_EXT | HAS_ATM),
+    /* D7  */ MAKE_PIN(PB, 4,  HAS_EXT | HAS_ADC),           /* ADC[1]-AIN6 */
+    /* D8  */ MAKE_PIN(PB, 5,  HAS_EXT | HAS_ADC),           /* ADC[1]-AIN7 */
+    /* D9  */ MAKE_PIN(PB, 31, HAS_EXT | HAS_ATM),
+    /* D10 */ MAKE_PIN(PA, 27, HAS_EXT),
+    /* D11 */ MAKE_PIN(PB, 0, HAS_EXT | HAS_SPI | HAS_ADC),  /* MOSI SERCOM5 ADC[1]-AIN0*/
+    /* D12 */ MAKE_PIN(PB, 2, HAS_EXT | HAS_SPI | HAS_ADC),  /* MISO SERCOM5 ADC[1]-AIN2*/
+    /* D13 */ MAKE_PIN(PB, 1, HAS_EXT | HAS_SPI | HAS_ADC),  /* SCLK SERCOM5 ADC[1]-AIN1*/
+    /* D14 */ MAKE_PIN(PA, 3, HAS_EXT | HAS_ADC),            /* ADC[0]-AIN1 */
+    /* D15 */ MAKE_PIN(PA, 12, HAS_EXT | HAS_I2C | HAS_ATM), /* SDA SERCOM2 */
+    /* D16 */ MAKE_PIN(PA, 13, HAS_EXT | HAS_I2C | HAS_ATM), /* SCL SERCOM2 */
+
+    /* EXT1 */
+    /* D17 */ MAKE_PIN(PB, 14, HAS_EXT),
+    /* D18 */ MAKE_PIN(PB, 15, HAS_EXT),
+    /* D19 */ MAKE_PIN(PA, 17, HAS_EXT | HAS_ATM),
+    /* D20 */ MAKE_PIN(PA, 18, HAS_EXT | HAS_SPI | HAS_ATM), /* MOSI SERCOM1 */
+    /* D21 */ MAKE_PIN(PA, 16, HAS_EXT | HAS_SPI | HAS_ATM), /* MISO SERCOM1 */
+    /* D22 */ MAKE_PIN(PA, 19, HAS_EXT | HAS_SPI | HAS_ATM), /* SCLK SERCOM1 */
+
+    /* EXT2 */
+    /* D23 */ MAKE_PIN(PA, 10, HAS_EXT | HAS_ATM | HAS_ADC), /* ADC[0]-AIN10 */
+    /* D24 */ MAKE_PIN(PA, 11, HAS_EXT | HAS_ATM),           /* ADC[0]-AIN11 */
+    /* D25 */ MAKE_PIN(PB, 16, HAS_EXT | HAS_ATM),
+    /* D26 */ MAKE_PIN(PB, 17, HAS_EXT | HAS_ATM),
+    /* D27 */ MAKE_PIN(PB, 3, HAS_EXT | HAS_ADC),            /* ADC[1]-AIN3  */
+
+    /* EXT3 */
+    /* D28 */ MAKE_PIN(PA, 14, HAS_EXT | HAS_ATM),    
+    /* D29 */ MAKE_PIN(PA, 15, HAS_EXT | HAS_ATM),          /* LED0 */
+    /* D30 */ MAKE_PIN(PA, 28, HAS_EXT),                    /* BTN0 */
+    /* D31 */ MAKE_PIN(PA, 2, HAS_EXT),                     /* ADC[0]-AIN0 */
+    
+    /* Virtual COM Port */
+    /* 
+        Those has been inverted in __serclass (tx has become rx and viceversa) and pads are not the ones in the datasheet
+        (as in the ones I've found today 14/05/2019). If done as it's stated in the datasheet usb serial isn't going to work
+        or it's going to print rubbish (0x00).
+    */
+    /* D32 */ MAKE_PIN(PB, 10, HAS_EXT | HAS_SER | HAS_ATM), /* TX SERCOM4 FOR USB SERIAL PORT */ 
+    /* D33 */ MAKE_PIN(PB, 11, HAS_EXT | HAS_SER | HAS_ATM), /* RX SERCOM4 */
+
+    /* ANALOG */
+    /* A0 */ MAKE_PIN(PB, 9, HAS_EXT | HAS_ADC),             /* ADC[0]-AIN3 */
+    /* A1 */ MAKE_PIN(PB, 8, HAS_EXT | HAS_ADC),             /* ADC[0]-AIN2 */
+    /* A2 */ MAKE_PIN(PA, 8, HAS_EXT | HAS_ADC | HAS_ATM),   /* ADC[0]-AIN8 */
+    /* A3 */ MAKE_PIN(PA, 9, HAS_EXT | HAS_ADC | HAS_ATM),   /* ADC[0]-AIN9 */
+    /* A4 */ MAKE_PIN(PB, 7, HAS_EXT | HAS_ADC),             /* ADC[1]-AIN9 */
+    /* A5 */ MAKE_PIN(PB, 6, HAS_EXT | HAS_ADC),             /* ADC[1]-AIN8 */   
+
+    /* Other pins */
+    /* D40 */ MAKE_PIN(PA, 5, HAS_EXT | HAS_ADC | HAS_PWM),
+};
+
+const PinClass const _analogclass[] STORED = {
+    /* pin, AINn, ADCn, periph sel (A-B-...) */
+    /* A0  */ MAKE_PIN_CLASS(34, 3, 0, 1),
+    /* A1  */ MAKE_PIN_CLASS(35, 2, 0, 1),
+    /* A2  */ MAKE_PIN_CLASS(36, 8, 0, 1),
+    /* A3  */ MAKE_PIN_CLASS(37, 9, 0, 1),
+    /* A4  */ MAKE_PIN_CLASS(38, 9, 1, 1),
+    /* A5  */ MAKE_PIN_CLASS(39, 8, 1, 1),
+    /* D7  */ MAKE_PIN_CLASS(7, 6, 1, 1),
+    /* D8  */ MAKE_PIN_CLASS(8, 7, 1, 1),
+    /* D11 */ MAKE_PIN_CLASS(8, 0, 1, 1),
+    /* D12 */ MAKE_PIN_CLASS(8, 2, 1, 1),
+    /* D13 */ MAKE_PIN_CLASS(8, 1, 1, 1),
+    /* D14 */ MAKE_PIN_CLASS(14, 1, 0, 1),
+    /* D23 */ MAKE_PIN_CLASS(23, 10, 0, 1),
+    /* D24 */ MAKE_PIN_CLASS(24, 11, 0, 1),
+    /* D27 */ MAKE_PIN_CLASS(27, 3, 1, 1),
+    /* D31 */ MAKE_PIN_CLASS(31, 0, 0, 1),
+    /* D40 */ MAKE_PIN_CLASS(40, 5, 0, 1) 
+};
+
+const PinClass const _spiclass[] STORED = {
+    /* pin_num, sercom, pad, alternate */
+    /* MOSI0 */ MAKE_PIN_CLASS(11, 5, 2, 3),
+    /* MISO0 */ MAKE_PIN_CLASS(12, 5, 0, 3),
+    /* SCLK0 */ MAKE_PIN_CLASS(13, 5, 3, 3),
+    /* MOSI1 */ MAKE_PIN_CLASS(20, 1, 2, 2),
+    /* MISO1 */ MAKE_PIN_CLASS(21, 1, 0, 2),
+    /* SCLK1 */ MAKE_PIN_CLASS(22, 1, 3, 2),
+};
+
+const PinClass const _i2cclass[] STORED = {
+    /* pin_num, sercom, pad, alternate */
+    /* SDA0  */ MAKE_PIN_CLASS(15, 2, 0, 2),
+    /* SCL0  */ MAKE_PIN_CLASS(16, 2, 1, 2),      
+};
+
+const PinClass const _pwmclass[] STORED = {
+    /* pin_num, tc, channel, alternate */
+    /* only tcc allowed */
+    /* D0  */ MAKE_PIN_CLASS(0, 0, 1, 5),
+    /* D1  */ MAKE_PIN_CLASS(1, 0, 0, 5),
+    /* D2  */ MAKE_PIN_CLASS(2, 0, 2, 5),
+    /* D3  */ MAKE_PIN_CLASS(3, 0, 2, 5),
+    /* D4  */ MAKE_PIN_CLASS(4, 0, 3, 5),
+    /* D5  */ MAKE_PIN_CLASS(5, 0, 3, 5),
+    /* D6  */ MAKE_PIN_CLASS(6, 1, 2, 5),
+    /* D9  */ MAKE_PIN_CLASS(9, 1, 3, 5),
+    /* D15 */ MAKE_PIN_CLASS(15, 2, 0, 4),
+    /* D16 */ MAKE_PIN_CLASS(16, 2, 1, 4),
+    /* D19 */ MAKE_PIN_CLASS(19, 0, 3, 5),
+    /* D20 */ MAKE_PIN_CLASS(20, 0, 2, 5),
+    /* D21 */ MAKE_PIN_CLASS(21, 2, 0, 4),
+    /* D22 */ MAKE_PIN_CLASS(22, 0, 3, 5),
+    /* D23 */ MAKE_PIN_CLASS(23, 1, 0, 4),
+    /* D24 */ MAKE_PIN_CLASS(24, 1, 1, 4),
+    /* D25 */ MAKE_PIN_CLASS(25, 0, 0, 5),
+    /* D26 */ MAKE_PIN_CLASS(26, 0, 1, 5),
+    /* D28 */ MAKE_PIN_CLASS(28, 0, 0, 5),
+    /* D29 */ MAKE_PIN_CLASS(29, 0, 1, 5),
+    /* A2  */ MAKE_PIN_CLASS(36, 1, 2, 5),
+    /* A3  */ MAKE_PIN_CLASS(37, 1, 3, 5),
+    /* D40 */ MAKE_PIN_CLASS(40, 0, 1, 4),
+};
+
+// DATA0 -> TC Channel
+// DATA2 -> PIO Peripheral (A = 0, B = 1)
+
+const PinClass const _icuclass[] STORED = {
+    /* pin_num, tc, channel, alternate */
+    /* only tcc allowed */
+    /* D0  */ MAKE_PIN_CLASS(0, 0, 1, 5),
+    /* D1  */ MAKE_PIN_CLASS(1, 0, 0, 5),
+    /* D2  */ MAKE_PIN_CLASS(2, 0, 2, 5),
+    /* D3  */ MAKE_PIN_CLASS(3, 0, 2, 5),
+    /* D4  */ MAKE_PIN_CLASS(4, 0, 3, 5),
+    /* D5  */ MAKE_PIN_CLASS(5, 0, 3, 5),
+    /* D6  */ MAKE_PIN_CLASS(6, 1, 2, 5),
+    /* D9  */ MAKE_PIN_CLASS(9, 1, 3, 5),
+    /* D15 */ MAKE_PIN_CLASS(15, 2, 0, 4),
+    /* D16 */ MAKE_PIN_CLASS(16, 2, 1, 4),
+    /* D19 */ MAKE_PIN_CLASS(19, 0, 3, 5),
+    /* D20 */ MAKE_PIN_CLASS(20, 0, 2, 5),
+    /* D21 */ MAKE_PIN_CLASS(21, 2, 0, 4),
+    /* D22 */ MAKE_PIN_CLASS(22, 0, 3, 5),
+    /* D23 */ MAKE_PIN_CLASS(23, 1, 0, 4),
+    /* D24 */ MAKE_PIN_CLASS(24, 1, 1, 4),
+    /* D25 */ MAKE_PIN_CLASS(25, 0, 0, 5),
+    /* D26 */ MAKE_PIN_CLASS(26, 0, 1, 5),
+    /* D28 */ MAKE_PIN_CLASS(28, 0, 0, 5),
+    /* D29 */ MAKE_PIN_CLASS(29, 0, 1, 5),
+    /* A2  */ MAKE_PIN_CLASS(36, 1, 2, 5),
+    /* A3  */ MAKE_PIN_CLASS(37, 1, 3, 5),
+};
+
+const PinClass const _canclass[] STORED = {
+};
+
+const PinClass const _serclass[] STORED = {
+    /* pin_num, sercom, pad, alternate */
+    /* RX0 */ MAKE_PIN_CLASS(33, 4, 3, 3),
+    /* TX0 */ MAKE_PIN_CLASS(32, 4, 2, 3),
+    /* RX1 */ MAKE_PIN_CLASS(0, 3, 1, 2),
+    /* TX1 */ MAKE_PIN_CLASS(1, 3, 0, 2),
+};
+
+const PinClass const _dacclass[] STORED = {
+};
+
+const PinClass const _ledclass[] STORED = {
+    /* LED0 */ MAKE_PIN_CLASS(29, 0, 0, 0),
+};
+
+const PinClass const _btnclass[] STORED = {
+    /* BTN0 */ MAKE_PIN_CLASS(30, 0, 0, 0),
+};
