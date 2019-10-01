@@ -17,7 +17,7 @@
     "architecture": "cortex-m0plus",
     "gccopts": {
         "arch": [
-            "cortex-m0plus",
+            "-mcpu=cortex-m0plus",
             "-mthumb"
         ],
         "cflags": [
@@ -51,8 +51,8 @@
     "jtag_chipid_len": 4,
     "jtag_timeout": 30,
     "jtag_chipid_prefix": "0x0080",
-    "bytecode_offset":"0x18600",
-    "vmstore_offset":"0x18200",
+    "bytecode_offset": "0x18600",
+    "vmstore_offset": "0x18200",
     "uplink_reset": "reset",
     "reset_time": 2000,
     "vm_mini_chunk": 64,
@@ -66,13 +66,13 @@
         "rtscts": false
     },
     "crypto_provisioning": "lightweight",
-    "preferred_uplink_with_jtag":{
-        "probe":"atmel_edbg"
+    "preferred_uplink_with_jtag": {
+        "probe": "atmel_edbg"
     },
-    "preferred_register_with_jtag":{
-        "probe":"atmel_edbg"
+    "preferred_register_with_jtag": {
+        "probe": "atmel_edbg"
     },
-    "preferred_burn_with_jtag":{
-        "probe":"atmel_edbg"
+    "preferred_burn_with_jtag": {
+        "probe": "atmel_edbg"
     }
 }
